@@ -22,7 +22,9 @@
     </header>
 
     <div class="login-container responsive-wrapper">
-      <form class="login-form">
+      <form method="POST" class="login-form">
+        {% csrf_token $}
+        {% form %}
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" id="username" name="username" />

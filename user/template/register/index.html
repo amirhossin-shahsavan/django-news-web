@@ -23,7 +23,9 @@
     </header>
 
     <div class="register-container responsive-wrapper">
-      <form class="register-form">
+      <form method="POST" class="register-form">
+        {% csrf_token $}
+        {% form %}
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" id="username" name="username" />
