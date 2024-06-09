@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',  
-    'user.apps.UserConfig' 
+    'django.contrib.staticfiles',
+    'user.apps.UserConfig',
     'main.apps.MainConfig',
     'crispy_forms',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +59,9 @@ ROOT_URLCONF = 'news.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'template'),
+        os.path.join(BASE_DIR, 'main', 'template', ''),
+        os.path.join(BASE_DIR, 'user', 'template', ''),],   
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,7 +74,14 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'news.wsgi.application'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # Database
