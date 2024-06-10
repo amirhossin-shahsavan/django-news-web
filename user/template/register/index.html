@@ -1,54 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
-    <link rel="stylesheet" href="../../../static/main/register.css" />
-  </head>
-  <body>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/register.css' %}">
+</head>
+<body>
     <header class="header">
-      <div class="responsive-wrapper header-container">
-        <div class="header-left"></div>
-        <nav class="header-right">
-          <ul class="nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/user/login">Login</a></li>
-          </ul>
-        </nav>
-      </div>
+        <div class="responsive-wrapper header-container">
+            <div class="header-left"></div>
+            <nav class="header-right">
+                <ul class="nav-list">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/user/login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <div class="register-container responsive-wrapper">
-      <form method="POST" class="register-form">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" />
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" />
-        </div>
-        <div class="form-group">
-          <label for="confirm-password">Confirm Password</label>
-          <input
-            type="password"
-            id="confirm-password"
-            name="confirm-password"
-          />
-        </div>
-        <button type="submit" class="register-button">Register</button>
-      </form>
+        <h2>Register</h2>
+        <form method="POST" class="register-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ user_form.username.label_tag }}
+                {{ user_form.username }}
+                {% if user_form.username.errors %}
+                    <div class="error">{{ user_form.username.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ user_form.email.label_tag }}
+                {{ user_form.email }}
+                {% if user_form.email.errors %}
+                    <div class="error">{{ user_form.email.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ user_form.password1.label_tag }}
+                {{ user_form.password1 }}
+                {% if user_form.password1.errors %}
+                    <div class="error">{{ user_form.password1.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ user_form.password2.label_tag }}
+                {{ user_form.password2 }}
+                {% if user_form.password2.errors %}
+                    <div class="error">{{ user_form.password2.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ profile_form.user_image.label_tag }}
+                {{ profile_form.user_image }}
+                {% if profile_form.user_image.errors %}
+                    <div class="error">{{ profile_form.user_image.errors }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="register-button">Register</button>
+        </form>
     </div>
 
     <footer class="footer">
-      <div class="responsive-wrapper footer-container">
-        <p>&copy; 2024 All rights reserved.</p>
-      </div>
+        <div class="responsive-wrapper footer-container">
+            <p>&copy; 2024 All rights reserved.</p>
+        </div>
     </footer>
-  </body>
+</body>
 </html>
