@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <link rel="stylesheet" href="../../../static/main/login.css" />
-  </head>
-  <body>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/login.css' %}" />
+</head>
+<body>
     <header class="header">
-      <div class="responsive-wrapper header-container">
-        <div class="header-left"></div>
-        <nav class="header-right">
-          <ul class="nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/user/register">Register</a></li>
-          </ul>
-        </nav>
-      </div>
+        <div class="responsive-wrapper header-container">
+            <div class="header-left"></div>
+            <nav class="header-right">
+                <ul class="nav-list">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/user/register">Register</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <div class="login-container responsive-wrapper">
-      <form method="POST" class="login-form">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" />
-        </div>
-        <button type="submit" class="login-button">Login</button>
-      </form>
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username.label_tag }} {{ form.username }} {% if form.username.errors %}
+                <div class="error">{{ form.username.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.password.label_tag }} {{ form.password }} {% if form.password.errors %}
+                <div class="error">{{ form.password.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.remember_me.label_tag }} {{ form.remember_me }} {% if form.remember_me.errors %}
+                <div class="error">{{ form.remember_me.errors }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
     </div>
 
     <footer class="footer">
-      <div class="responsive-wrapper footer-container">
-        <p>&copy; 2024 All rights reserved.</p>
-      </div>
+        <div class="responsive-wrapper footer-container">
+            <p>&copy; 2024 All rights reserved.</p>
+        </div>
     </footer>
-  </body>
+</body>
 </html>

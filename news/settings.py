@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
     'main.apps.MainConfig',
-    'crispy_forms',
 ]
 
 
@@ -139,3 +138,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR,'images')
 MEDIA_URL = '/images/'
 LOGIN_REDIRECT_URL = '/'
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
+LOGIN_URL = 'login'
