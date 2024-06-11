@@ -29,7 +29,7 @@ class RegisterView(View):
             messages.success(request, f'Account created for {username}')
             return redirect('login')  # Ensure you have a named URL pattern for login
 
-        return render(request, self.template_name, {'user_form': user_form, 'profile_form': profile_form})
+        return render(request, self.template_name, {'user_form': user_form, 'profile_form': {}})
 
 
 
