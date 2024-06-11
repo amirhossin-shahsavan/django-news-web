@@ -34,6 +34,14 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_detail(self):
+        return self.detail[:250]
+    
+    def get_created(self):
+        today = timezone.now()
+        diff = today - self.created_at
+        return diff.days
     
 
 class Comment(models.Model):
@@ -46,3 +54,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.user.username} on "{self.post.title}": "{self.content}"'
+    
+    def get_comment(self):
+        return self.content[:20]

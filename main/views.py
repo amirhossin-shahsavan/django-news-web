@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from .models import  Post, Category,Comment
+from .models import  Post, Category,Comment, Author
 
 def home(request):
-    all_news=Post.objects.all()
-    return render(request,'index.html',{
-        'all_news':all_news
-    })
+    news=Post.objects.all()
+    comments = Comment.objects.all()
+    return render(request,'post.html',{'news':news, 'comments': comments})

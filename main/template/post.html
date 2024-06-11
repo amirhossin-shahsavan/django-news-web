@@ -1,0 +1,105 @@
+{% extends "./index.html" %}
+
+{% block content %}
+    {% for n in news %}
+
+        <div class="blog-container">
+            <div class="blog-header">
+                <div
+                    class="blog-cover"
+                    style="
+                    background: url('{{ n.image.url }}');
+                    ">
+                    <div class="blog-author">
+                    <h3 style="background-image: url('{{n.author.profile_picture.url}}');
+                               background-size: cover;
+                               border-radius: 50%;
+                               content: '';
+                               display: inline-block;
+                               height: 32px;
+                               margin-right: 0.5rem;
+                               position: relative;
+                               top: 8px;
+                               width: 32px;">{{n.author}}</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1><a href="#">{{n.title}}</a></h1>
+                </div>
+                <div class="blog-summary">
+                    <p>
+                    {{n.get_detail}}
+                    </p>
+                </div>
+                <div class="blog-tags">
+                    <ul>
+                    <li><a href="#">css</a></li>
+                    <li><a href="#">web design</a></li>
+                    <li><a href="#">codepen</a></li>
+                    <li><a href="https://twitter.com/russbeye">twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="blog-footer">
+                <ul>
+                    <li class="published-date">{{n.get_created}} days ago</li>
+                    <li class="comments">
+                      <a id="CommentClick"
+                        ><svg class="icon-bubble">
+                          <use xlink:href="#icon-bubble"></use>
+                        </svg>
+                        <span class="numero">4</span></a
+                      >
+                      <div class="detailBox" id="CommentBox1">
+                        <div class="titleBox">
+                          <label>Comment Box</label>
+                          <button
+                            type="button"
+                            id="closeBTn"
+                            class="close"
+                            aria-hidden="true">
+                            &times;
+                          </button>
+                        </div>
+
+                        {% for comment in comments %}
+                            <div class="actionBox" style="display: flex; flex-direction: column;align-items: start; gap: 16px;">
+                            <div>
+                                <div class="commenterImage">
+                                <img src="http://placekitten.com/50/50" />
+                                </div>
+                                {% if comment.post == n %}
+                                    <div class="commentText">
+                                    <p class="">{{comment.get_comment}}</p>
+                                    <span class="date sub-text">{{comment.created_at}}</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            </div>
+                        {% endfor %}
+
+                        <div class="actionBox">
+                          <form class="form-inline" role="form" style="display: flex;">
+                            <div class="form-group">
+                              <input
+                                class="form-control"
+                                type="text"
+                                placeholder="Your comments" />
+                            </div>
+                            <div class="form-group">
+                              <button class="btn btn-default">Add</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+            </div>
+        </div>
+    {% endfor %}
+    <script src="../../static/main/news.js"></script>
+{% endblock %}
